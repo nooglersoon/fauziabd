@@ -6,7 +6,7 @@ type Props = {
 
 export default function SectionDescription({ children }: Props) {
   return (
-    <div className='text-black text-[10px] h-40 py-2 overflow-auto'>
+    <div className='text-black text-[10px] h-40 py-2 overflow-auto w-72'>
       {children}
     </div>
   )

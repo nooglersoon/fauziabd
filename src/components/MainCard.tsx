@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import SectionTitle from "./texts/SectionTitle";
+import { Content, contents } from "@/components/contents";
 import SectionDescription from "./texts/SectionDescription";
 
 export default function MainCard() {
+
+  const sections = contents
+  const [selectedSection, setSelectedSection] = useState<Content>(sections[0])
+
   return (
     <div className="group max-w-md my-auto border border-black border-opacity-5 mx-auto rounded-xl shadow-lg">
       <div className="relative h-[300px]">
-        <div className="relative bg-black h-full overflow-hidden rounded-t-xl">
+        <div className="relative h-full overflow-hidden rounded-t-xl">
           <Image
-            src="/med.jpg"
+            src={selectedSection.headerImageURL}
             alt=""
             className=" object-cover w-full"
             fill={true}
@@ -19,81 +24,32 @@ export default function MainCard() {
         <div
           className="absolute inset-0 flex flex-col items-start justify-end p-6"
         >
-          <h3 className="text-xl font-medium text-white">UX Engineer in the making.</h3>
-          <p className="text-sm font-medium text-white">Casual Trainers</p>
+          <h3 className="text-xl font-medium text-white">{selectedSection.headerTitle}</h3>
+          <p className="text-sm font-medium text-white">{selectedSection.headerSubtitle}</p>
         </div>
       </div>
       <div className="px-4 pt-6 pb-8 flex flex-col gap-4">
         <div className="mt-1.5 flex gap-1">
-          <form>
-            <fieldset>
-              <legend className="sr-only">Color</legend>
-            </fieldset>
-
-            <div
-              className="flex flex-wrap justify-center gap-1 [&:hover_label]:opacity-75"
-            >
-              <div>
-                <input type="checkbox" id="ColorSg" className="sr-only" />
-
-                <label
-                  htmlFor="ColorSg"
-                  className="block h-4 w-4 cursor-pointer rounded-full bg-[#595759] transition hover:!opacity-100"
-                >
-                  <span className="sr-only"> Space Gray </span>
-                </label>
-              </div>
-
-              <div>
-                <input type="checkbox" id="ColorS" className="sr-only" />
-
-                <label
-                  htmlFor="ColorS"
-                  className="block h-4 w-4 cursor-pointer rounded-full bg-[#d2d3d4] transition hover:!opacity-100"
-                >
-                  <span className="sr-only"> Silver </span>
-                </label>
-              </div>
-
-              <div>
-                <input type="checkbox" id="ColorP" className="sr-only" />
-
-                <label
-                  htmlFor="ColorP"
-                  className="block h-4 w-4 cursor-pointer rounded-full bg-[#d89f97] transition hover:!opacity-100"
-                >
-                  <span className="sr-only"> Pink </span>
-                </label>
-              </div>
-
-              <div>
-                <input type="checkbox" id="ColorG" className="sr-only" />
-
-                <label
-                  htmlFor="ColorG"
-                  className="block h-4 w-4 cursor-pointer rounded-full bg-[#afbfab] transition hover:!opacity-100"
-                >
-                  <span className="sr-only"> Pink </span>
-                </label>
-              </div>
-
-              <div>
-                <input type="checkbox" id="ColorSb" className="sr-only" />
-
-                <label
-                  htmlFor="ColorSb"
-                  className="block h-4 w-4 cursor-pointer rounded-full bg-[#91a5bb] transition hover:!opacity-100"
-                >
-                  <span className="sr-only"> Pink </span>
-                </label>
-              </div>
-            </div>
-          </form>
+          <div
+            className="flex flex-wrap justify-center gap-2 [&:hover_label]:opacity-75"
+          >
+            {
+              contents.map((content) => {
+                return (
+                  <button
+                    key={content.index}
+                    className={`block h-4 w-4 rounded-full border border-slate-200 ${selectedSection.index === content.index ? 'bg-slate-400' : ''}`}
+                    onClick={() => {
+                      setSelectedSection(sections[content.index])
+                    }}
+                  />
+                )
+              })
+            }
+          </div>
         </div>
-        <SectionTitle title="Introduction." />
-        <SectionDescription>
-          An experienced Software Developer with 3 years of expertise in creating both iOS and front- end application. Possessing strong technical skills in UIKit & SwiftUI (iOS) and NextJS (React Application) frameworks, adept at developing captivating user interfaces and seamless user experiences. Highly proficient in Swift programming language, enabling efficient and scalable application development.
-        </SectionDescription>
+        <SectionTitle title={selectedSection.sectionTitle} />
+        {selectedSection.sectionDescription}
       </div>
       <Footer />
     </div>
