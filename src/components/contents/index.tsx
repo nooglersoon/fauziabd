@@ -3,6 +3,7 @@ import Image from "next/image";
 import React, { ReactNode } from "react";
 import { Expertise, Project, Work } from "./model";
 import { expertises, projects, works } from "./data";
+import Link from "next/link";
 
 export interface Content {
   index: number;
@@ -52,9 +53,53 @@ export const contents: Content[] = [
 ]
 
 function IntroductionSection() {
+
+  type SocMed = {
+    name: string;
+    url: string;
+    icon: string;
+  }
+
+  const socmeds: SocMed[] = [
+    {
+      name: "LinkedIn",
+      url: "https://www.linkedin.com/in/fauziabd/",
+      icon: "/icons/linkedin.svg"
+    },
+    {
+      name: "GitHub",
+      url: "https://github.com/nooglersoon",
+      icon: "/icons/github.svg"
+    }
+  ]
+
   return (
     <SectionDescription>
       An experienced Software Developer with 3 years of expertise in creating both iOS and front- end application. Possessing strong technical skills in UIKit & SwiftUI (iOS) and NextJS (React Application) frameworks, adept at developing captivating user interfaces and seamless user experiences. Highly proficient in Swift & TypeScript programming language, enabling efficient and scalable application development.
+    <div className="my-4">
+        <p className="text-lg font-semibold">Contact me</p>
+        <div className="grid grid-cols-3 gap-x-4 gap-y-6 overflow-auto px-2 py-4">
+        {socmeds.map((socmed, i) => {
+          return (
+            <Link
+            className="flex flex-col gap-2 items-center" 
+            key={i}
+            href={socmed.url}
+            target="_blank"
+            >
+              <Image
+                alt={socmed.name}
+                src={socmed.icon}
+                className="h-8 w-8"
+                height={32}
+                width={32}
+              />
+              <div className="text-[9px] font-regular text-gray-400 mt-2 text-center">{socmed.name}</div>
+            </Link>
+          )
+        })}
+      </div>
+    </div>
     </SectionDescription>
   )
 }
