@@ -94,7 +94,7 @@ function IntroductionSection() {
                 height={32}
                 width={32}
               />
-              <div className="text-[9px] font-regular text-gray-400 mt-2 text-center">{socmed.name}</div>
+              <div className="text-[9px] font-regular text-black mt-2 text-center">{socmed.name}</div>
             </Link>
           )
         })}
@@ -154,8 +154,8 @@ function FeaturedProjectsSection(projects: Project[]) {
               />
               <div className="flex flex-col gap-1 items-start">
                 <div className="text-sm font-semibold text-black">{project.name}</div>
-                <div className="text-[10px] font-regular text-gray-400">{project.desc}</div>
-                <div className="text-[9px] font-regular text-gray-400 mt-2"> {project.client} • {project.year}</div>
+                <div className="text-[10px] font-regular text-black">{project.desc}</div>
+                <div className="text-[9px] font-regular text-black mt-2"> {project.client} • {project.year}</div>
               </div>
             </a>
           )
@@ -179,7 +179,7 @@ function ExpertiseSection(expertises: Expertise[]) {
                 height={32}
                 width={32}
               />
-              <div className="text-[9px] font-regular text-gray-400 mt-2 text-center">{expertise.name}</div>
+              <div className="text-[9px] font-regular text-black mt-2 text-center">{expertise.name}</div>
             </div>
           )
         })}

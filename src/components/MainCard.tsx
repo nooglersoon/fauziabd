@@ -10,7 +10,7 @@ export default function MainCard() {
   const [selectedSection, setSelectedSection] = useState<Content>(sections[0])
 
   return (
-    <div className="group max-w-md my-auto border border-black border-opacity-5 mx-auto rounded-xl shadow-lg">
+    <div className="group max-w-md my-auto border border-black border-opacity-5 mx-auto rounded-xl shadow-lg bg-white">
       <div className="relative h-[300px]">
         <div className="relative h-full overflow-hidden rounded-t-xl">
           <Image
@@ -37,8 +37,9 @@ export default function MainCard() {
               contents.map((content) => {
                 return (
                   <button
+                    id="section-button"
                     key={content.index}
-                    className={`block h-4 w-4 rounded-full border border-slate-200 ${selectedSection.index === content.index ? 'bg-slate-400' : ''}`}
+                    className={`block h-4 w-4 rounded-full border border-slate-200 ${selectedSection.index === content.index ? 'bg-black' : ''}`}
                     onClick={() => {
                       setSelectedSection(sections[content.index])
                     }}
@@ -60,7 +61,7 @@ function Footer() {
   let year = new Date().getFullYear();
   return (
     <div className="pb-4 px-4">
-      <p className="text-[8px] text-gray-400">© {year}. Fauziabd - iOS & Front End Engineer</p>
+      <p className="text-[8px] text-black">© {year}. Fauziabd - iOS & Front End Engineer</p>
     </div>
   )
 }
